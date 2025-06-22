@@ -1,0 +1,72 @@
+#file: noinspection SpellCheckingInspection
+name: DamiEssentials
+version: '1.0'
+main: me.damian.essentials.DamiEssentials
+api-version: '1.21'
+depend: [ DamiCore, Vault, PlaceholderAPI ]
+authors: [ DamianFarias ]
+description: Essential functions plugin
+commands:
+  damiessentials:
+    description: Main command of DamiEssentials plugin
+    aliases:
+      - essentials
+      - ess
+      - damiess
+
+  # WARPS COMMANDS
+  addwarpalias:
+  addwarplocation:
+  createwarp:
+  deletewarp:
+    aliases:
+      - delwarp
+  setwarpdisplayname:
+  setwarpprice:
+  warp:
+    aliases:
+      - ir
+      - lugares
+      - lugar
+
+  # SPEED COMMANDS
+  flyspeed:
+  speed:
+
+  # GAMEMODE COMMANDS
+  gamemode:
+    aliases:
+    - gm
+    - modo
+    - modojogo
+  gmc:
+  gms:
+  gma:
+  gmsp:
+
+  # TELEPORT COMMANDS
+  teleport:
+    aliases:
+      - tp
+
+  # PRIVATE MESSAGE COMMANDS
+  pm:
+    aliases:
+    - msg
+    - tell
+    - whisper
+  reply:
+    aliases:
+    - r
+  ignore:
+
+  # VIRTUAL COMMANDS
+  workbench:
+    aliases:
+      - wb
+      - craft
+      - crafting
+
+  fix:
+    aliases:
+      - repair

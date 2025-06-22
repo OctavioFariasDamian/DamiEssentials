@@ -1,0 +1,13 @@
+Warps: {}
+
+ChatFormat: "%vault_prefix% %player_name%&8: %message%"
+ChatDelay: 1 # segundos
+
+PM-Format:
+  Sender: "&cTú &7-> &a%receiver% &8» &7%message%"
+  Receiver: "&a%sender% &7-> &cTú &8» &7%message%"
+
+IgnoredPlayers:
+  DamianFarias:
+    - MrMoncito
+    - JainaGam3r45
