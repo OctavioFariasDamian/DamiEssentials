@@ -50,7 +50,6 @@ public class WorkbenchCommand implements TabExecutor {
         if (args.length == 1) {
             return filterSuggestions(sender.getServer().getOnlinePlayers().stream()
                     .map(Player::getName)
-                    .filter(name -> name.toLowerCase().startsWith(args[0].toLowerCase()))
                     .toList(), args[0]);
         }
         return List.of();

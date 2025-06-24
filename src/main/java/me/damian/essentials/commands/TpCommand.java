@@ -65,12 +65,10 @@ public class TpCommand implements TabExecutor {
         if (args.length == 1) {
             return filterSuggestions(sender.getServer().getOnlinePlayers().stream()
                     .map(Player::getName)
-                    .filter(name -> name.toLowerCase().startsWith(args[0].toLowerCase()))
                     .toList(), args[0]);
         } else if (args.length == 2 && sender.hasPermission("dami-essentials.tp.others")) {
             return filterSuggestions(sender.getServer().getOnlinePlayers().stream()
                     .map(Player::getName)
-                    .filter(name -> name.toLowerCase().startsWith(args[1].toLowerCase()))
                     .toList(), args[1]);
         }
         return List.of();

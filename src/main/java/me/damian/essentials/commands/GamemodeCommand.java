@@ -92,7 +92,6 @@ public class GamemodeCommand implements TabExecutor {
         } else if (args.length == 2 && sender.hasPermission("dami-essentials.gamemode.others")) {
             return filterSuggestions(sender.getServer().getOnlinePlayers().stream()
                     .map(Player::getName)
-                    .filter(name -> name.toLowerCase().startsWith(args[1].toLowerCase()))
                     .toList(), args[1]);
         }
 

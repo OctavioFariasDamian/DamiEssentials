@@ -66,7 +66,19 @@ commands:
       - wb
       - craft
       - crafting
-
   fix:
     aliases:
       - repair
+
+  anvil:
+
+  # HEALING
+  heal:
+  feed:
+
+  # OTHERS
+  lightning:
+    aliases:
+      - shock
+      - thunder
+  

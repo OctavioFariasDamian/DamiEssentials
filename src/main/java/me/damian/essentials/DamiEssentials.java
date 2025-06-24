@@ -81,6 +81,9 @@ public final class DamiEssentials extends JavaPlugin {
         getCommand("gmsp").setExecutor(new GamemodeSpectatorCommand());
         getCommand("gmsp").setTabCompleter(new GamemodeSpectatorCommand());
 
+        getCommand("lightning").setExecutor(new LightningCommand());
+        getCommand("lightning").setTabCompleter(new LightningCommand());
+
         getCommand("damiessentials").setExecutor(new MainCommand());
         getCommand("damiessentials").setTabCompleter(new MainCommand());
 
@@ -92,6 +95,15 @@ public final class DamiEssentials extends JavaPlugin {
 
         getCommand("ignore").setExecutor(new IgnoreCommand());
         getCommand("ignore").setTabCompleter(new IgnoreCommand());
+
+        getCommand("heal").setExecutor(new HealCommand());
+        getCommand("heal").setTabCompleter(new HealCommand());
+
+        getCommand("feed").setExecutor(new FeedCommand());
+        getCommand("feed").setTabCompleter(new FeedCommand());
+
+        getCommand("anvil").setExecutor(new AnvilCommand());
+        getCommand("anvil").setTabCompleter(new AnvilCommand());
     }
 
     private void registerListeners() {

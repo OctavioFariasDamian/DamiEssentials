@@ -42,6 +42,11 @@ public class SpeedCommand implements TabExecutor {
             return false;
         }
 
+        if(speed > 10){
+            sendMessageWithPrefix(sender, "&cEl máximo de velocidad es de 10.0");
+            return false;
+        }
+
         if (player.isFlying()) {
             player.setFlySpeed(speed / 10);
             sendMessageWithPrefix(sender, "&fHas cambiado la velocidad de vuelo a &e" + speed + "&f.");

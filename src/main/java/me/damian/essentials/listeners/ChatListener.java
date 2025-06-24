@@ -21,8 +21,10 @@ public class ChatListener implements Listener {
     @EventHandler(priority = EventPriority.NORMAL)
     public void onChat(AsyncPlayerChatEvent event) {
         if(System.currentTimeMillis() > chatCooldowns.getOrDefault(event.getPlayer(), 0L) || event.getPlayer().hasPermission("dami-essentials.bypass-chat-delay")) {
-            event.setFormat(colorize(PlaceholderAPI.setPlaceholders(event.getPlayer(), DamiEssentials.getInstance().getConfig().getString("ChatFormat", "%vault_prefix% %player_name%&8: %message%")
-                    .replace("%message%", event.getMessage()))));
+            String safeMessage = event.getMessage().replace("%", "%%");
+            String format = DamiEssentials.getInstance().getConfig().getString("ChatFormat", "%vault_prefix% %player_name%&8: %message%")
+                    .replace("%message%", safeMessage);
+            event.setFormat(colorize(PlaceholderAPI.setPlaceholders(event.getPlayer(), format)));
             chatCooldowns.put(event.getPlayer(), System.currentTimeMillis() + (DamiEssentials.getInstance().getConfig().getLong("ChatCooldown", 0) * 1000));
         }else{
             event.setCancelled(true);

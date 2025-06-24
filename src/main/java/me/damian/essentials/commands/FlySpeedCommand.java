@@ -41,6 +41,11 @@ public class FlySpeedCommand implements TabExecutor {
             sendMessageWithPrefix(sender, "&cLa velocidad debe ser un número positivo.");
             return false;
         }
+
+        if(speed > 10){
+            sendMessageWithPrefix(sender, "&cLa velocidad debe estar entre 0.0 y 10.0");
+            return false;
+        }
         
         if (player.isFlying()) {
             player.setFlySpeed(speed / 10);
