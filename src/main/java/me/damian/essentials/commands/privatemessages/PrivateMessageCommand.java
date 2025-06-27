@@ -1,6 +1,7 @@
 package me.damian.essentials.commands.privatemessages;
 
 import me.damian.essentials.DamiEssentials;
+import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -62,12 +63,50 @@ public class PrivateMessageCommand implements TabExecutor {
                         .replace("%message%", message);
 
                 sendMessageWithPrefix(target, messageToTarget, prefix);
+                String messageToSpy = Objects.requireNonNull(DamiEssentials.getInstance().getConfig().getString("PM-Format.Spy"))
+                        .replace("%sender%", player.getName())
+                        .replace("%receiver%", target.getName())
+                        .replace("%message%", message);
+
+                sendMessageWithPrefix(Bukkit.getConsoleSender(), messageToSpy, prefix);
+                DamiEssentials.getInstance().getServer().getOnlinePlayers().forEach(player1 ->
+                        {
+                            if(SocialSpyCommand.socialSpyEnabledPlayers.contains(player1)){
+                                if (player1.hasPermission("dami-essentials.spy")) {
+                                    if(player1 != player && player1 != target) {
+                                        sendMessageWithPrefix(player1, messageToSpy, prefix);
+                                    }
+                                }else{
+                                    sendMessageWithPrefix(player1, "&cNo tienes permisos para ver los mensajes privados.", prefix);
+                                    SocialSpyCommand.socialSpyEnabledPlayers.remove(player1);
+                                }
+
+                            }
+                        });
                 target.playSound(target.getLocation(), Sound.BLOCK_LEVER_CLICK, 1.0f, 1.0f);
                 ReplyCommand.lastPlayerMessages.put(target.getName(), player.getName());
             }
 
             ReplyCommand.lastPlayerMessages.put(player.getName(), target.getName());
         }else{
+            String messageToSpy = Objects.requireNonNull(DamiEssentials.getInstance().getConfig().getString("PM-Format.Spy"))
+                    .replace("%sender%", "Consola")
+                    .replace("%receiver%", target.getName())
+                    .replace("%message%", message);
+
+            DamiEssentials.getInstance().getServer().getOnlinePlayers().forEach(player1 ->
+            {
+                if(SocialSpyCommand.socialSpyEnabledPlayers.contains(player1) ){
+                    if (player1.hasPermission("dami-essentials.spy")) {
+                        if (player1 != target)
+                            sendMessageWithPrefix(player1, messageToSpy, prefix);
+                    }else{
+                        sendMessageWithPrefix(player1, "&cNo tienes permisos para ver los mensajes privados.", prefix);
+                        SocialSpyCommand.socialSpyEnabledPlayers.remove(player1);
+                    }
+
+                }
+            });
             String messageToSender = Objects.requireNonNull(DamiEssentials.getInstance().getConfig().getString("PM-Format.Sender"))
                     .replace("%receiver%", target.getName())
                     .replace("%message%", message);

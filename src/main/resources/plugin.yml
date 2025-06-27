@@ -59,6 +59,9 @@ commands:
     aliases:
     - r
   ignore:
+  socialspy:
+    aliases:
+      - spy
 
   # VIRTUAL COMMANDS
   workbench:

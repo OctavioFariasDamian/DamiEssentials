@@ -6,6 +6,7 @@ ChatDelay: 1 # segundos
 PM-Format:
   Sender: "&cTú &7-> &a%receiver% &8» &7%message%"
   Receiver: "&a%sender% &7-> &cTú &8» &7%message%"
+  Spy: "&6[SP] &e%sender% &7-> &e%receiver% &8» &7%message%"
 
 IgnoredPlayers:
   DamianFarias:

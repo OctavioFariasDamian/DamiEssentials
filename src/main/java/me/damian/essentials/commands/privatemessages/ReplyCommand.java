@@ -1,6 +1,7 @@
 package me.damian.essentials.commands.privatemessages;
 
 import me.damian.essentials.DamiEssentials;
+import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -54,6 +55,7 @@ public class ReplyCommand implements TabExecutor {
         String messageToSender = Objects.requireNonNull(DamiEssentials.getInstance().getConfig().getString("PM-Format.Sender"))
                 .replace("%receiver%", targetPlayer.getName())
                 .replace("%message%", message);
+
         sendMessageWithPrefix(player, messageToSender, prefix);
 
         List<String> ignoredPlayers2 = new ArrayList<>(DamiEssentials.getInstance().getConfig().getStringList("IgnoredPlayers." + targetPlayer.getName()));
@@ -62,6 +64,25 @@ public class ReplyCommand implements TabExecutor {
             String messageToTarget = Objects.requireNonNull(DamiEssentials.getInstance().getConfig().getString("PM-Format.Receiver"))
                     .replace("%sender%", player.getName())
                     .replace("%message%", message);
+
+            String messageToSpy = Objects.requireNonNull(DamiEssentials.getInstance().getConfig().getString("PM-Format.Spy"))
+                    .replace("%sender%", player.getName())
+                    .replace("%receiver%", targetPlayer.getName())
+                    .replace("%message%", message);
+
+            sendMessageWithPrefix(Bukkit.getConsoleSender(), messageToSpy, prefix);
+            DamiEssentials.getInstance().getServer().getOnlinePlayers().forEach(player1 ->
+            {
+                if(SocialSpyCommand.socialSpyEnabledPlayers.contains(player1)){
+                    if (player1.hasPermission("dami-essentials.spy")) {
+                        sendMessageWithPrefix(player1, messageToSpy, prefix);
+                    }else{
+                        sendMessageWithPrefix(player1, "&cNo tienes permisos para ver los mensajes privados.", prefix);
+                        SocialSpyCommand.socialSpyEnabledPlayers.remove(player1);
+                    }
+
+                }
+            });
 
             sendMessageWithPrefix(targetPlayer, messageToTarget, prefix);
             targetPlayer.playSound(targetPlayer.getLocation(), Sound.BLOCK_LEVER_CLICK, 1.0f, 1.0f);

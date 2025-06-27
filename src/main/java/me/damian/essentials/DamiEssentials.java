@@ -5,6 +5,7 @@ import me.damian.essentials.commands.*;
 import me.damian.essentials.commands.privatemessages.IgnoreCommand;
 import me.damian.essentials.commands.privatemessages.PrivateMessageCommand;
 import me.damian.essentials.commands.privatemessages.ReplyCommand;
+import me.damian.essentials.commands.privatemessages.SocialSpyCommand;
 import me.damian.essentials.commands.warps.*;
 import me.damian.essentials.listeners.ChatListener;
 import me.damian.essentials.listeners.WarpsListener;
@@ -104,6 +105,9 @@ public final class DamiEssentials extends JavaPlugin {
 
         getCommand("anvil").setExecutor(new AnvilCommand());
         getCommand("anvil").setTabCompleter(new AnvilCommand());
+
+        getCommand("socialspy").setExecutor(new SocialSpyCommand());
+        getCommand("socialspy").setTabCompleter(new SocialSpyCommand());
     }
 
     private void registerListeners() {

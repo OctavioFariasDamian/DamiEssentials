@@ -17,6 +17,7 @@ import static me.damian.core.DamiUtils.sendMessageWithPrefix;
 public class ChatListener implements Listener {
 
     private static final Map<Player, Long> chatCooldowns = new HashMap<>();
+
     @SuppressWarnings("deprecation")
     @EventHandler(priority = EventPriority.NORMAL)
     public void onChat(AsyncPlayerChatEvent event) {
