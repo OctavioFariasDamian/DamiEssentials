@@ -1,5 +1,6 @@
 package me.damian.essentials.commands;
 
+import me.damian.essentials.DamiEssentials;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -43,6 +44,7 @@ public class FeedCommand implements TabExecutor {
         }
         target.setFoodLevel(20);
         sendMessageWithPrefix(commandSender, "&fHas satisfacido el hambre de &e" + target.getName() + "&f.");
+        DamiEssentials.sendLog("**"+(commandSender instanceof Player ? commandSender.getName() : "Consola") + "** ha satisfacido el hambre de **"+target.getName()+"**");
         return true;
     }
 

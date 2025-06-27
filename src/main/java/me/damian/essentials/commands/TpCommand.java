@@ -1,5 +1,6 @@
 package me.damian.essentials.commands;
 
+import me.damian.essentials.DamiEssentials;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
@@ -37,6 +38,7 @@ public class TpCommand implements TabExecutor {
 
             player.teleport(target.getLocation());
             sendMessageWithPrefix(sender, "&fTe has teletransportado a &e" + target.getName() + "&f.");
+            DamiEssentials.sendLog("**"+player + "** se teletransportó hacia **"+player.getName()+"**");
             return true;
         }
 
@@ -57,6 +59,8 @@ public class TpCommand implements TabExecutor {
 
         target1.teleport(target2.getLocation());
         sendMessageWithPrefix(sender, "&fHas teletransportado a &e" + target1.getName() + " &f a &e" + target2.getName() + "&f.");
+        DamiEssentials.sendLog("**"+(sender instanceof Player ? sender.getName() : "Consola") + "** hizo que **"+target1+"** se teletransporte hacia **"+target2.getName()+"**");
+
         return true;
     }
 

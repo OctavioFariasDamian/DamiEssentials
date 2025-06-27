@@ -1,5 +1,6 @@
 package me.damian.essentials.commands;
 
+import me.damian.essentials.DamiEssentials;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -33,8 +34,9 @@ public class LightningCommand implements TabExecutor {
         }
 
         player.getWorld().strikeLightning(player.getLocation());
-        sendMessageWithPrefix(sender, "&cLe cayó un rayo a &e"+player.getName()+"&f. UWU");
+        sendMessageWithPrefix(sender, "&fLe cayó un rayo a &e"+player.getName()+"&f. UWU");
         sendMessageWithPrefix(player, "&cTe ha caído un rayo.");
+        DamiEssentials.sendLog("**"+(sender instanceof Player ? sender.getName() : "Consola") + "** ha lazado un rayo sobre **"+player.getName()+"**");
         return false;
     }
 

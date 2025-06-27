@@ -3,7 +3,7 @@ name: DamiEssentials
 version: '1.0'
 main: me.damian.essentials.DamiEssentials
 api-version: '1.21'
-depend: [ DamiCore, Vault, PlaceholderAPI ]
+depend: [ DamiCore, Vault, PlaceholderAPI, SupremeBot ]
 authors: [ DamianFarias ]
 description: Essential functions plugin
 commands:

@@ -1,5 +1,6 @@
 package me.damian.essentials.commands;
 
+import me.damian.essentials.DamiEssentials;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -45,6 +46,7 @@ public class HealCommand implements TabExecutor {
         target.setHealth(Objects.requireNonNull(target.getAttribute(Attribute.MAX_HEALTH)).getValue());
         target.setFoodLevel(20);
         sendMessageWithPrefix(commandSender, "&fHas curado a &e" + target.getName() + "&f.");
+        DamiEssentials.sendLog("**"+(commandSender instanceof Player ? commandSender.getName() : "Consola") + "** ha curado a **"+target.getName()+"**");
         return true;
     }
 

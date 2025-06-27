@@ -1,5 +1,6 @@
 package me.damian.essentials.commands;
 
+import me.damian.essentials.DamiEssentials;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
@@ -50,10 +51,11 @@ public class SpeedCommand implements TabExecutor {
         if (player.isFlying()) {
             player.setFlySpeed(speed / 10);
             sendMessageWithPrefix(sender, "&fHas cambiado la velocidad de vuelo a &e" + speed + "&f.");
+            DamiEssentials.sendLog("**"+player.getName() + "** ha cambiado su velocidad de vuelo a **" + speed + "**.");
         } else {
             player.setWalkSpeed(speed / 10);
             sendMessageWithPrefix(sender, "&fHas cambiado la velocidad de caminata a &e" + speed + "&f.");
-            return false;
+            DamiEssentials.sendLog("**"+player.getName() + "** ha cambiado su velocidad de caminata a **" + speed + "**.");
         }
         return false;
     }

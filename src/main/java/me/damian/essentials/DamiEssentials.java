@@ -1,5 +1,6 @@
 package me.damian.essentials;
 
+import com.supreme.bot.SupremeBot;
 import lombok.Getter;
 import me.damian.essentials.commands.*;
 import me.damian.essentials.commands.privatemessages.IgnoreCommand;
@@ -10,10 +11,14 @@ import me.damian.essentials.commands.warps.*;
 import me.damian.essentials.listeners.ChatListener;
 import me.damian.essentials.listeners.WarpsListener;
 import me.damian.essentials.managers.WarpsManager;
+import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.time.Instant;
 
 public final class DamiEssentials extends JavaPlugin {
 
@@ -21,6 +26,7 @@ public final class DamiEssentials extends JavaPlugin {
     private static Economy vaultEconomy;
     @Getter
     private static DamiEssentials instance;
+    private TextChannel staffActivityLogs;
 
     @Override
     public void onEnable() {
@@ -108,6 +114,8 @@ public final class DamiEssentials extends JavaPlugin {
 
         getCommand("socialspy").setExecutor(new SocialSpyCommand());
         getCommand("socialspy").setTabCompleter(new SocialSpyCommand());
+
+        staffActivityLogs = SupremeBot.getJda().getTextChannelById(1361900904554696825L);
     }
 
     private void registerListeners() {
@@ -123,5 +131,17 @@ public final class DamiEssentials extends JavaPlugin {
             return;
         }
         vaultEconomy = rsp.getProvider();
+    }
+
+    public static void sendLog(String s){
+        if (instance.staffActivityLogs != null) {
+            instance.staffActivityLogs
+                    .sendMessageEmbeds(new EmbedBuilder()
+                            .setColor(0xff0000)
+                            .setDescription(s)
+                            .setTimestamp(Instant.now()).build()).queue();
+        } else {
+            instance.getLogger().warning("Staff activity logs channel is not set. Please check the configuration.");
+        }
     }
 }

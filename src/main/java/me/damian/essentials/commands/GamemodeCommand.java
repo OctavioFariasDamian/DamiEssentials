@@ -1,5 +1,6 @@
 package me.damian.essentials.commands;
 
+import me.damian.essentials.DamiEssentials;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
@@ -47,6 +48,7 @@ public class GamemodeCommand implements TabExecutor {
                 default -> "";
             };
             sendMessageWithPrefix(sender, "&fHas cambiado tu modo de juego a &e" + gamemode + "&f.");
+            DamiEssentials.sendLog("**"+player.getName() + "** ha cambiado su modo de juego a **" + gamemode + "**.");
             return true;
         }
         if (!sender.hasPermission("dami-essentials.gamemode.others")) {
@@ -80,8 +82,9 @@ public class GamemodeCommand implements TabExecutor {
             default -> "";
         };
 
-        sendMessageWithPrefix(sender, "&fHas cambiado el modo de juego de &e" + target.getName() + " &f a &e" + gamemode + "&f.");
+        sendMessageWithPrefix(sender, "&fHas cambiado el modo de juego de &e" + target.getName() + " &fa &e" + gamemode + "&f.");
         sendMessageWithPrefix(target, "&fTu modo de juego ha sido cambiado a &e" + gamemode + "&f por &e" + sender.getName() + "&f.");
+        DamiEssentials.sendLog("**"+(sender instanceof Player ? sender.getName() : "Consola") + "** ha cambiado el modo de juego de **"+target.getName()+"** a **" + gamemode + "**.");
         return false;
     }
 

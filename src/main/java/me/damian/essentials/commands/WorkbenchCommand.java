@@ -1,5 +1,6 @@
 package me.damian.essentials.commands;
 
+import me.damian.essentials.DamiEssentials;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
@@ -41,7 +42,9 @@ public class WorkbenchCommand implements TabExecutor {
         }
 
         target.openWorkbench(null, true);
-        sendMessageWithPrefix(sender, "&fHas abierto el banco de trabajo para &e" + target.getName() + "&f.");
+        sendMessageWithPrefix(sender, "&fHas abierto una mesa de crafteo para &e" + target.getName() + "&f.");
+        sendMessageWithPrefix(target, "&fUn &cadministrador &fte ha abierto una mesa de crafteo.");
+        DamiEssentials.sendLog("**"+(sender instanceof Player ? sender.getName() : "Consola") + "** ha abierto una mesa de crafteo a **"+target.getName()+"**");
         return true;
     }
 
